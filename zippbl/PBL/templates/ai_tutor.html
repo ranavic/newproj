@@ -1,0 +1,365 @@
+{% extends 'base.html' %}
+
+{% block title %}AI Tutor - SkillForge{% endblock %}
+
+{% block content %}
+<!-- AI Tutor Header -->
+<section class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-16">
+    <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-8 md:mb-0">
+                <span class="inline-block px-4 py-1 bg-white bg-opacity-20 rounded-full mb-4 backdrop-blur-md">
+                    <span class="text-sm font-semibold flex items-center">
+                        <i class="fas fa-robot text-yellow-300 mr-2"></i> AI-Powered Learning Assistant
+                    </span>
+                </span>
+                <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">Your Personal <span class="text-pink-300">AI Tutor</span></h1>
+                <p class="text-xl mb-8 text-gray-100 leading-relaxed">Get instant help with difficult concepts, personalized explanations, and 24/7 support for all your learning needs.</p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#ai-chat" class="btn-primary py-3 px-6 rounded-lg font-semibold shadow-lg flex items-center">
+                        <i class="fas fa-comments mr-2"></i> Start Chatting
+                    </a>
+                    <a href="#features" class="bg-transparent hover:bg-white hover:text-indigo-600 border-2 border-white py-3 px-6 rounded-lg font-semibold transition-all duration-300 flex items-center">
+                        <i class="fas fa-info-circle mr-2"></i> Learn More
+                    </a>
+                </div>
+            </div>
+            <div class="md:w-1/2">
+                <div class="relative">
+                    <div class="absolute -inset-0.5 bg-gradient-to-r from-pink-500 to-indigo-500 rounded-lg blur opacity-30 animate-pulse"></div>
+                    <img src="https://images.unsplash.com/photo-1531746790731-6c087fecd65a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="AI Tutor" class="rounded-lg shadow-2xl relative z-10 transform transition-transform duration-500 hover:scale-[1.02]">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="py-20 bg-white" id="features">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16 animate-on-scroll">
+            <span class="inline-block px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-semibold mb-3">Features</span>
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">How Our AI Tutor Helps You</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">Our advanced AI tutor combines natural language processing with deep learning to provide an exceptional learning experience.</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="card p-8 bg-white group animate-on-scroll">
+                <div class="w-16 h-16 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300">
+                    <i class="fas fa-question-circle text-3xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 group-hover:text-indigo-600 transition-colors">Instant Answers</h3>
+                <p class="text-gray-600">Get immediate answers to your questions about course material, concepts, or assignments at any time of day.</p>
+                <div class="mt-4 overflow-hidden rounded-lg">
+                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Instant Answers" class="w-full h-48 object-cover transform transition-transform duration-500 group-hover:scale-105">
+                </div>
+            </div>
+            
+            <div class="card p-8 bg-white group animate-on-scroll">
+                <div class="w-16 h-16 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300">
+                    <i class="fas fa-chalkboard-teacher text-3xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 group-hover:text-indigo-600 transition-colors">Personalized Explanations</h3>
+                <p class="text-gray-600">Receive explanations tailored to your learning style and level of understanding, making complex topics easier to grasp.</p>
+                <div class="mt-4 overflow-hidden rounded-lg">
+                    <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Personalized Explanations" class="w-full h-48 object-cover transform transition-transform duration-500 group-hover:scale-105">
+                </div>
+            </div>
+            
+            <div class="card p-8 bg-white group animate-on-scroll">
+                <div class="w-16 h-16 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300">
+                    <i class="fas fa-code text-3xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 group-hover:text-indigo-600 transition-colors">Code Assistance</h3>
+                <p class="text-gray-600">Get help with coding problems, debugging, and understanding programming concepts with interactive examples.</p>
+                <div class="mt-4 overflow-hidden rounded-lg">
+                    <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" 
+                         alt="Code Assistance" class="w-full h-48 object-cover transform transition-transform duration-500 group-hover:scale-105">
+                </div>
+            </div>
+            
+            <div class="card p-8 bg-white group animate-on-scroll">
+                <div class="w-16 h-16 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300">
+                    <i class="fas fa-language text-3xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 group-hover:text-indigo-600 transition-colors">Multi-language Support</h3>
+                <p class="text-gray-600">Communicate with the AI tutor in English, Hindi, Kannada, and other languages for a more comfortable learning experience.</p>
+                <div class="mt-4 overflow-hidden rounded-lg">
+                    <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1473&q=80" 
+                         alt="Multi-language Support" class="w-full h-48 object-cover transform transition-transform duration-500 group-hover:scale-105">
+                </div>
+            </div>
+            
+            <div class="card p-8 bg-white group animate-on-scroll">
+                <div class="w-16 h-16 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300">
+                    <i class="fas fa-history text-3xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 group-hover:text-indigo-600 transition-colors">Conversation History</h3>
+                <p class="text-gray-600">Access your past conversations with the AI tutor to review explanations and build on previous learning sessions.</p>
+                <div class="mt-4 overflow-hidden rounded-lg">
+                    <img src="https://images.unsplash.com/photo-1517842645767-c639042777db?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Conversation History" class="w-full h-48 object-cover transform transition-transform duration-500 group-hover:scale-105">
+                </div>
+            </div>
+            
+            <div class="card p-8 bg-white group animate-on-scroll">
+                <div class="w-16 h-16 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300">
+                    <i class="fas fa-book-reader text-3xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 group-hover:text-indigo-600 transition-colors">Study Resources</h3>
+                <p class="text-gray-600">Get recommendations for additional study materials, practice exercises, and resources based on your learning needs.</p>
+                <div class="mt-4 overflow-hidden rounded-lg">
+                    <img src="https://images.unsplash.com/photo-1456735190827-d1262f71b8a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1528&q=80" 
+                         alt="Study Resources" class="w-full h-48 object-cover transform transition-transform duration-500 group-hover:scale-105">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- AI Chat Interface -->
+<section class="py-20 bg-gray-50" id="ai-chat">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16 animate-on-scroll">
+            <span class="inline-block px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-semibold mb-3">Chat Interface</span>
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Start Chatting With Your AI Tutor</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">Ask any question about your courses, get help with assignments, or explore new concepts with our AI tutor.</p>
+        </div>
+        
+        <div class="max-w-4xl mx-auto">
+            <div class="bg-white rounded-xl shadow-xl overflow-hidden">
+                <!-- Chat Header -->
+                <div class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-4 flex items-center">
+                    <div class="w-10 h-10 rounded-full bg-white bg-opacity-20 flex items-center justify-center mr-3">
+                        <i class="fas fa-robot text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold">SkillForge AI Tutor</h3>
+                        <p class="text-xs text-indigo-200">Online • Responds instantly</p>
+                    </div>
+                    <div class="ml-auto flex gap-2">
+                        <button class="w-8 h-8 rounded-full bg-white bg-opacity-10 flex items-center justify-center hover:bg-opacity-20 transition-all">
+                            <i class="fas fa-volume-up text-sm"></i>
+                        </button>
+                        <button class="w-8 h-8 rounded-full bg-white bg-opacity-10 flex items-center justify-center hover:bg-opacity-20 transition-all">
+                            <i class="fas fa-cog text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Chat Messages -->
+                <div class="p-4 h-96 overflow-y-auto bg-gray-50">
+                    <!-- AI Welcome Message -->
+                    <div class="flex mb-4">
+                        <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 flex-shrink-0">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="ml-3 bg-white p-3 rounded-lg shadow-sm max-w-md">
+                            <p class="text-gray-800">Hello! I'm your AI tutor. How can I help you with your learning today?</p>
+                            <span class="text-xs text-gray-500 mt-1 block">10:30 AM</span>
+                        </div>
+                    </div>
+                    
+                    <!-- User Message -->
+                    <div class="flex justify-end mb-4">
+                        <div class="mr-3 bg-indigo-600 p-3 rounded-lg shadow-sm text-white max-w-md">
+                            <p>I'm having trouble understanding how neural networks work. Can you explain them in simple terms?</p>
+                            <span class="text-xs text-indigo-200 mt-1 block">10:31 AM</span>
+                        </div>
+                        <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 flex-shrink-0">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- AI Response -->
+                    <div class="flex mb-4">
+                        <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 flex-shrink-0">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="ml-3 bg-white p-3 rounded-lg shadow-sm max-w-md">
+                            <p class="text-gray-800">Sure! Think of a neural network like a brain. It's made up of layers of "neurons" that pass information to each other.</p>
+                            <p class="text-gray-800 mt-2">In simple terms:</p>
+                            <ol class="list-decimal pl-5 mt-2 text-gray-800">
+                                <li>Input Layer: Takes in data (like pixels of an image)</li>
+                                <li>Hidden Layers: Process the information through weighted connections</li>
+                                <li>Output Layer: Provides a result (like "this is a cat")</li>
+                            </ol>
+                            <p class="text-gray-800 mt-2">The network "learns" by adjusting the strength of connections between neurons based on examples it sees.</p>
+                            <p class="text-gray-800 mt-2">Would you like me to explain any specific part in more detail?</p>
+                            <span class="text-xs text-gray-500 mt-1 block">10:32 AM</span>
+                        </div>
+                    </div>
+                    
+                    <!-- User Message -->
+                    <div class="flex justify-end mb-4">
+                        <div class="mr-3 bg-indigo-600 p-3 rounded-lg shadow-sm text-white max-w-md">
+                            <p>That helps! How do they actually learn though? What's backpropagation?</p>
+                            <span class="text-xs text-indigo-200 mt-1 block">10:33 AM</span>
+                        </div>
+                        <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 flex-shrink-0">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- AI Response -->
+                    <div class="flex mb-4">
+                        <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 flex-shrink-0">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="ml-3 bg-white p-3 rounded-lg shadow-sm max-w-md">
+                            <p class="text-gray-800">Backpropagation is how neural networks learn. Here's a simple explanation:</p>
+                            <ol class="list-decimal pl-5 mt-2 text-gray-800">
+                                <li>The network makes a prediction</li>
+                                <li>We measure how wrong it is (the "error")</li>
+                                <li>We figure out how much each neuron contributed to the error</li>
+                                <li>We adjust each connection to reduce the error next time</li>
+                            </ol>
+                            <p class="text-gray-800 mt-2">It's like learning from mistakes. If the network predicts wrong, it adjusts its connections to do better next time.</p>
+                            <p class="text-gray-800 mt-2">Think of it like walking in the dark - you bump into something, so you adjust your path to avoid that obstacle next time.</p>
+                            <span class="text-xs text-gray-500 mt-1 block">10:35 AM</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Chat Input -->
+                <div class="p-4 border-t border-gray-200">
+                    <div class="relative">
+                        <input type="text" placeholder="Ask your question..." class="w-full bg-gray-100 border border-gray-300 rounded-full py-3 px-4 pr-12 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                        <button class="absolute right-2 top-2 bg-indigo-600 text-white rounded-full p-2 hover:bg-indigo-700 transition-colors">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                    <div class="flex justify-between mt-2 text-xs text-gray-500 px-2">
+                        <span>Supports code snippets, math equations, and multiple languages</span>
+                        <span>0/2000</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Suggested Questions -->
+            <div class="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all cursor-pointer">
+                    <h4 class="font-medium text-indigo-600 mb-1">How do I implement a binary search tree?</h4>
+                    <p class="text-sm text-gray-600">Get step-by-step guidance on implementing this data structure</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all cursor-pointer">
+                    <h4 class="font-medium text-indigo-600 mb-1">Explain machine learning algorithms</h4>
+                    <p class="text-sm text-gray-600">Learn about different ML algorithms and their applications</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all cursor-pointer">
+                    <h4 class="font-medium text-indigo-600 mb-1">Help me debug my JavaScript code</h4>
+                    <p class="text-sm text-gray-600">Get assistance with finding and fixing bugs in your code</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials -->
+<section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16 animate-on-scroll">
+            <span class="inline-block px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-semibold mb-3">Testimonials</span>
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">What Students Say</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">Hear from students who have accelerated their learning with our AI tutor.</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="glass-card rounded-xl p-8 shadow-lg relative animate-on-scroll">
+                <div class="text-indigo-500 text-6xl absolute -top-4 left-6 opacity-20">"</div>
+                <div class="flex items-center mb-6 relative z-10">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Student" class="w-14 h-14 rounded-full mr-4 ring-2 ring-indigo-400 p-0.5">
+                    <div>
+                        <h4 class="font-semibold text-lg">Rahul Sharma</h4>
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-gray-600 leading-relaxed relative z-10">"The AI tutor helped me understand complex programming concepts that I was struggling with for weeks. It explained everything in a way that made sense to me and provided examples that clicked instantly."</p>
+            </div>
+            
+            <div class="glass-card rounded-xl p-8 shadow-lg relative animate-on-scroll">
+                <div class="text-indigo-500 text-6xl absolute -top-4 left-6 opacity-20">"</div>
+                <div class="flex items-center mb-6 relative z-10">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Student" class="w-14 h-14 rounded-full mr-4 ring-2 ring-indigo-400 p-0.5">
+                    <div>
+                        <h4 class="font-semibold text-lg">Priya Patel</h4>
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-gray-600 leading-relaxed relative z-10">"Being able to ask questions in Hindi made learning so much easier for me. The AI tutor's explanations were clear and it was patient with all my follow-up questions. It's like having a personal tutor available 24/7!"</p>
+            </div>
+            
+            <div class="glass-card rounded-xl p-8 shadow-lg relative animate-on-scroll">
+                <div class="text-indigo-500 text-6xl absolute -top-4 left-6 opacity-20">"</div>
+                <div class="flex items-center mb-6 relative z-10">
+                    <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Student" class="w-14 h-14 rounded-full mr-4 ring-2 ring-indigo-400 p-0.5">
+                    <div>
+                        <h4 class="font-semibold text-lg">Arjun Reddy</h4>
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-gray-600 leading-relaxed relative z-10">"The code assistance feature is incredible! When I was stuck on a project, the AI tutor not only explained the concept but also helped me debug my code and suggested improvements. It's been a game-changer for my programming courses."</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="hero-gradient text-white py-20 relative overflow-hidden">
+    <div class="absolute inset-0 bg-indigo-900 opacity-10 pattern-dots"></div>
+    <div class="container mx-auto px-4 text-center relative z-10">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 animate-on-scroll">Ready to Accelerate Your Learning?</h2>
+            <p class="text-xl mb-10 animate-on-scroll">Get instant help with your studies, personalized explanations, and 24/7 support with our AI tutor.</p>
+            <div class="flex flex-wrap justify-center gap-6 animate-on-scroll">
+                <a href="#ai-chat" class="bg-white text-indigo-600 hover:bg-gray-100 py-4 px-8 rounded-lg font-semibold text-lg shadow-lg flex items-center">
+                    <i class="fas fa-comments mr-2"></i> Start Chatting Now
+                </a>
+                <a href="{% url 'course_list' %}" class="bg-transparent hover:bg-white hover:text-indigo-600 border-2 border-white py-4 px-8 rounded-lg font-semibold text-lg transition-all duration-300 flex items-center">
+                    <i class="fas fa-book-open mr-2"></i> Browse Courses
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .pattern-dots {
+        background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+        background-size: 20px 20px;
+    }
+    
+    .glass-card {
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: all 0.3s ease;
+    }
+    
+    .glass-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+</style>
+{% endblock %}

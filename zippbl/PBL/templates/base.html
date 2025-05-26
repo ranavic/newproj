@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}SkillForge{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" crossorigin="anonymous">
+    <style>
+        :root {
+            --primary-color: #4f46e5;
+            --secondary-color: #8b5cf6;
+            --accent-color: #ec4899;
+            --text-color: #1f2937;
+            --light-bg: #f9fafb;
+            --card-hover-transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .navbar-gradient {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.15);
+            transition: all 0.3s ease;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.5s ease;
+            z-index: -1;
+        }
+        
+        .btn-primary:hover {
+            background-color: #4338ca;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.2);
+        }
+        
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+        
+        .card {
+            border-radius: 1rem;
+            overflow: hidden;
+            transition: var(--card-hover-transition);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            backface-visibility: hidden;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .nav-link {
+            position: relative;
+            padding-bottom: 3px;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: white;
+            transition: width 0.3s ease;
+            opacity: 0.8;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .dropdown-menu {
+            transform: translateY(10px);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            border-radius: 0.75rem;
+        }
+        
+        .dropdown:hover .dropdown-menu {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .badge {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .badge::after {
+            content: attr(data-badge);
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            font-size: 0.6rem;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: var(--accent-color);
+            color: white;
+            box-shadow: 0 3px 6px rgba(236, 72, 153, 0.3);
+        }
+        
+        /* Animations */
+        .animate-fadeIn {
+            animation: fadeIn 0.5s ease forwards;
+        }
+        
+        .animate-slideUp {
+            animation: slideUp 0.5s ease forwards;
+        }
+        
+        .animate-scaleIn {
+            animation: scaleIn 0.5s ease forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(30px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+        
+        @keyframes scaleIn {
+            from { 
+                opacity: 0; 
+                transform: scale(0.9); 
+            }
+            to { 
+                opacity: 1; 
+                transform: scale(1); 
+            }
+        }
+        
+        /* Glass effect components */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
+        }
+        
+        /* Footer link hover effects */
+        .footer-link-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .footer-link-hover:hover {
+            transform: translateX(5px);
+            color: var(--secondary-color);
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--secondary-color);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-color);
+        }
+    </style>
+    {% block extra_css %}{% endblock %}
+</head>
+<body class="min-h-screen bg-gray-50 flex flex-col font-sans">
+    <!-- Navigation bar -->
+    <nav class="navbar-gradient text-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="{% url 'home' %}" class="flex items-center group">
+                <span class="text-2xl font-bold tracking-tight flex items-center">
+                    <i class="fas fa-graduation-cap mr-2 transform group-hover:rotate-12 transition-transform duration-300"></i>
+                    <span class="text-white">Skill<span class="text-pink-300 font-extrabold">Forge</span></span>
+                </span>
+            </a>
+            
+            <div class="hidden md:flex space-x-8">
+                <a href="{% url 'home' %}" class="nav-link hover:text-pink-200 font-medium py-2">Home</a>
+                <a href="{% url 'course_list' %}" class="nav-link hover:text-pink-200 font-medium py-2">Courses</a>
+                    <a href="{% url 'dashboard' %}" class="nav-link hover:text-pink-200 font-medium py-2">Dashboard</a>
+                    <a href="{% url 'ai_tutor' %}" class="nav-link hover:text-pink-200 font-medium py-2">AI Tutor</a>
+                    <a href="{% url 'mentorship' %}" class="nav-link hover:text-pink-200 font-medium py-2">Mentorship</a>
+                <a href="#about-section" class="nav-link hover:text-pink-200 font-medium py-2">About</a>
+            </div>
+            
+            <div class="flex items-center space-x-6">
+
+                    <a href="#" class="badge text-white relative overflow-hidden group" data-badge="3">
+                        <i class="fas fa-bell text-xl"></i>
+                        <span class="absolute inset-0 bg-white bg-opacity-20 rounded-full scale-0 group-hover:scale-100 transition-transform duration-300"></span>
+                    </a>
+                    <div class="relative dropdown">
+                        <button class="flex items-center space-x-2 focus:outline-none group">
+                            <div class="w-9 h-9 rounded-full bg-indigo-300 flex items-center justify-center text-indigo-800 font-semibold overflow-hidden border-2 border-indigo-400 transition-all duration-300 group-hover:border-white">
+                                {{ user.username|first|upper }}
+                            </div>
+                            <span class="font-medium">{{ user.username }}</span>
+                            <i class="fas fa-chevron-down text-xs transition-transform duration-300 group-hover:rotate-180"></i>
+                        </button>
+                        <div class="dropdown-menu absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-xl py-2 z-10">
+                            <div class="px-4 py-3 border-b border-gray-100">
+                                <p class="text-sm text-gray-500">Signed in as</p>
+                                <p class="text-sm font-medium text-gray-900 truncate">{{ user.email }}</p>
+                            </div>
+                            <a href="{% url 'dashboard' %}" class="flex items-center px-4 py-3 text-gray-800 hover:bg-indigo-50 transition-colors duration-200">
+                                <i class="fas fa-tachometer-alt w-5 text-indigo-500"></i>
+                                <span class="ml-3">Dashboard</span>
+                            </a>
+                            <a href="#" class="flex items-center px-4 py-3 text-gray-800 hover:bg-indigo-50 transition-colors duration-200">
+                                <i class="fas fa-book-open w-5 text-indigo-500"></i>
+                                <span class="ml-3">My Courses</span>
+                            </a>
+                            <a href="#" class="flex items-center px-4 py-3 text-gray-800 hover:bg-indigo-50 transition-colors duration-200">
+                                <i class="fas fa-certificate w-5 text-indigo-500"></i>
+                                <span class="ml-3">Certificates</span>
+                            </a>
+                            <div class="border-t border-gray-100 my-1"></div>
+                            <a href="{% url 'logout' %}" class="flex items-center px-4 py-3 text-gray-800 hover:bg-red-50 hover:text-red-700 transition-colors duration-200">
+                                <i class="fas fa-sign-out-alt w-5 text-red-500"></i>
+                                <span class="ml-3">Logout</span>
+                            </a>
+                        </div>
+                    </div>
+                    <a href="{% url 'login' %}" class="py-2 px-5 bg-white text-indigo-600 rounded-lg hover:bg-gray-100 transition-all duration-300 font-medium shadow-md hover:shadow-lg">Login</a>
+                    <a href="{% url 'register' %}" class="btn-primary py-2.5 px-6 text-white rounded-lg font-medium shadow-md">Register</a>
+                
+                <button class="md:hidden text-white focus:outline-none">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile menu - hidden by default -->
+        <div class="md:hidden hidden bg-indigo-900 pb-4">
+            <div class="container mx-auto px-6 pt-2 pb-3 space-y-1">
+                <a href="{% url 'home' %}" class="block px-3 py-2 rounded-md text-white font-medium hover:bg-indigo-800">Home</a>
+                <a href="{% url 'course_list' %}" class="block px-3 py-2 rounded-md text-white font-medium hover:bg-indigo-800">Courses</a>
+
+                    <a href="{% url 'dashboard' %}" class="block px-3 py-2 rounded-md text-white font-medium hover:bg-indigo-800">Dashboard</a>
+                    <a href="{% url 'ai_tutor' %}" class="block px-3 py-2 rounded-md text-white font-medium hover:bg-indigo-800">AI Tutor</a>
+                    <a href="{% url 'mentorship' %}" class="block px-3 py-2 rounded-md text-white font-medium hover:bg-indigo-800">Mentorship</a>
+
+                <a href="#about-section" class="block px-3 py-2 rounded-md text-white font-medium hover:bg-indigo-800">About</a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Main content -->
+    <main class="flex-grow">
+        {% if messages %}
+            <div class="container mx-auto px-6 mt-6">
+                {% for message in messages %}
+                    <div class="p-4 mb-4 rounded-xl shadow-md border-l-4 flex items-center animate-fadeIn {% if message.tags == 'error' %}bg-red-50 border-red-500 text-red-700{% elif message.tags == 'success' %}bg-green-50 border-green-500 text-green-700{% else %}bg-blue-50 border-blue-500 text-blue-700{% endif %}">
+                        <i class="{% if message.tags == 'error' %}fas fa-exclamation-circle text-red-500{% elif message.tags == 'success' %}fas fa-check-circle text-green-500{% else %}fas fa-info-circle text-blue-500{% endif %} mr-3 text-xl"></i>
+                        <div>{{ message }}</div>
+                        <button class="ml-auto text-gray-400 hover:text-gray-600 focus:outline-none">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        
+        {% block content %}{% endblock %}
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white mt-auto">
+        <div class="container mx-auto px-6 py-12">
+            <!-- Top section with logo and newsletter -->
+            <div class="flex flex-col md:flex-row justify-between items-center mb-12 pb-8 border-b border-gray-800">
+                <div class="flex items-center mb-6 md:mb-0">
+                    <i class="fas fa-graduation-cap text-3xl mr-3 text-indigo-400"></i>
+                    <span class="text-3xl font-bold tracking-tight">
+                        <span class="text-white">Skill<span class="text-pink-400 font-extrabold">Forge</span></span>
+                    </span>
+                </div>
+                
+                <div class="w-full md:w-1/3">
+                    <h3 class="text-lg font-medium mb-3">Subscribe to our newsletter</h3>
+                    <div class="flex">
+                        <input type="email" placeholder="your@email.com" class="flex-grow px-4 py-2 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-gray-800 text-white border-gray-700 border">
+                        <button class="btn-primary rounded-r-lg px-4 py-2">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Main footer content -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div class="animate-on-scroll">
+                    <h3 class="text-xl font-semibold mb-6 pb-2 border-b border-indigo-500 inline-block">About Us</h3>
+                    <p class="text-gray-300 leading-relaxed">Next-generation AI-driven e-learning platform that redefines online education with personalized learning paths and innovative features.</p>
+                    <div class="mt-4 flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-indigo-400 transition-colors duration-300 transform hover:scale-110"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-indigo-400 transition-colors duration-300 transform hover:scale-110"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-indigo-400 transition-colors duration-300 transform hover:scale-110"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-indigo-400 transition-colors duration-300 transform hover:scale-110"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="animate-on-scroll">
+                    <h3 class="text-xl font-semibold mb-6 pb-2 border-b border-indigo-500 inline-block">Explore</h3>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="/" class="text-gray-300 hover:text-white flex items-center transition-all duration-300 hover:translate-x-1 footer-link-hover">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-indigo-400"></i> Home
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'course_list' %}" class="text-gray-300 hover:text-white flex items-center transition-all duration-300 hover:translate-x-1 footer-link-hover">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-indigo-400"></i> Courses
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-gray-300 hover:text-white flex items-center transition-all duration-300 hover:translate-x-1 footer-link-hover">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-indigo-400"></i> About Us
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-gray-300 hover:text-white flex items-center transition-all duration-300 hover:translate-x-1 footer-link-hover">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-indigo-400"></i> Contact
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="animate-on-scroll">
+                    <h3 class="text-xl font-semibold mb-6 pb-2 border-b border-indigo-500 inline-block">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="/terms/" class="text-gray-300 hover:text-white flex items-center transition-all duration-300 hover:translate-x-1 footer-link-hover">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-indigo-400"></i> Terms of Service
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/privacy/" class="text-gray-300 hover:text-white flex items-center transition-all duration-300 hover:translate-x-1 footer-link-hover">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-indigo-400"></i> Privacy Policy
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-gray-300 hover:text-white flex items-center transition-all duration-300 hover:translate-x-1 footer-link-hover">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-indigo-400"></i> Help Center
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-gray-300 hover:text-white flex items-center transition-all duration-300 hover:translate-x-1 footer-link-hover">
+                                <i class="fas fa-chevron-right text-xs mr-2 text-indigo-400"></i> FAQs
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="animate-on-scroll">
+                    <h3 class="text-xl font-semibold mb-6 pb-2 border-b border-indigo-500 inline-block">Contact Us</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start group">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-indigo-400 group-hover:text-pink-400 transition-colors duration-300"></i>
+                            <span class="text-gray-300">123 Education Street, Learning City, 12345</span>
+                        </li>
+                        <li class="flex items-center group">
+                            <i class="fas fa-phone-alt mr-3 text-indigo-400 group-hover:text-pink-400 transition-colors duration-300"></i>
+                            <span class="text-gray-300">+1 (123) 456-7890</span>
+                        </li>
+                        <li class="flex items-center group">
+                            <i class="fas fa-envelope mr-3 text-indigo-400 group-hover:text-pink-400 transition-colors duration-300"></i>
+                            <span class="text-gray-300">info@skillforge.edu</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Bottom copyright -->
+            <div class="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <p> 2023 SkillForge. All rights reserved. | Designed with <i class="fas fa-heart text-pink-500 animate-pulse"></i> for learners worldwide</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.querySelector('button.md\\:hidden');
+            const mobileMenu = document.querySelector('div.md\\:hidden.bg-indigo-900');
+            
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function() {
+                    if (mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.remove('hidden');
+                        mobileMenu.classList.add('animate-slideUp');
+                    } else {
+                        mobileMenu.classList.add('hidden');
+                        mobileMenu.classList.remove('animate-slideUp');
+                    }
+                });
+            }
+            
+            // Close message alerts
+            const alertCloseButtons = document.querySelectorAll('.text-gray-400.hover\\:text-gray-600');
+            alertCloseButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const alert = this.closest('div.rounded-xl');
+                    if (alert) {
+                        alert.style.opacity = '0';
+                        setTimeout(() => {
+                            alert.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+            
+            // Add scroll animation for navbar
+            const navbar = document.querySelector('.navbar-gradient');
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('py-2');
+                    navbar.classList.remove('py-4');
+                    navbar.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.1)';
+                } else {
+                    navbar.classList.add('py-4');
+                    navbar.classList.remove('py-2');
+                    navbar.style.boxShadow = '0 4px 15px rgba(79, 70, 229, 0.15)';
+                }
+            });
+            
+            // Intersection Observer for scroll animations
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-fadeIn');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe all elements with the animate-on-scroll class
+            document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(el);
+            });
+            
+            // Additionally observe cards and other content elements
+            document.querySelectorAll('.card, .grid > div').forEach(el => {
+                if (!el.classList.contains('animate-on-scroll')) {
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(20px)';
+                    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                    observer.observe(el);
+                }
+            });
+            
+            // Helper function to add animation class
+            function addAnimClass(element) {
+                element.style.opacity = '1';
+                element.style.transform = 'translateY(0)';
+            }
+        });
+    </script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

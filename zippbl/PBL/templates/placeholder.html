@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Coming Soon - SkillForge{% endblock %}
+
+{% block content %}
+<section class="py-20 bg-gradient-to-b from-indigo-50 to-white min-h-[80vh] flex items-center">
+    <div class="container mx-auto px-4 text-center">
+        <div class="glass-card p-10 rounded-2xl shadow-xl max-w-2xl mx-auto transform transition-all duration-300 hover:shadow-2xl animate-scaleIn">
+            <div class="relative mb-8 inline-block">
+                <div class="absolute inset-0 bg-indigo-500 rounded-full animate-pulse opacity-20"></div>
+                <i class="fas fa-rocket text-indigo-600 text-6xl relative z-10"></i>
+            </div>
+            <h1 class="text-4xl font-bold mb-4 bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Feature Coming Soon</h1>
+            <p class="text-gray-600 mb-8 text-lg max-w-md mx-auto leading-relaxed">
+                We're working hard to bring this exciting feature to SkillForge. 
+                Our team is putting the finishing touches on something amazing!
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="{% url 'home' %}" class="btn-primary py-3 px-8 rounded-lg font-medium shadow-lg flex items-center justify-center sm:justify-start">
+                    <i class="fas fa-home mr-2"></i> Return to Home
+                </a>
+                <a href="{% url 'course_list' %}" class="bg-white border border-indigo-200 text-indigo-600 py-3 px-8 rounded-lg font-medium shadow-md hover:bg-indigo-50 transition-colors flex items-center justify-center sm:justify-start">
+                    <i class="fas fa-book-open mr-2"></i> Browse Courses
+                </a>
+            </div>
+            
+            <div class="mt-12 pt-6 border-t border-gray-200">
+                <p class="text-gray-500 text-sm">Want to be notified when this feature is live?</p>
+                <div class="flex max-w-md mx-auto mt-3">
+                    <input type="email" placeholder="Your email address" class="flex-grow px-4 py-2 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 border border-gray-300">
+                    <button class="btn-primary rounded-r-lg px-4 py-2 flex items-center">
+                        <span>Notify Me</span>
+                        <i class="fas fa-bell ml-2"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

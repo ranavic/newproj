@@ -1,0 +1,453 @@
+{% extends 'base.html' %}
+
+{% block title %}SkillForge - AI-Driven E-Learning Platform{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-gradient text-white py-20 relative overflow-hidden">
+    <div class="absolute inset-0 bg-indigo-800 opacity-10 pattern-dots"></div>
+    <div class="container mx-auto px-4 relative z-10">
+        <div class="flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-12 md:mb-0 animate-slideUp">
+                <span class="inline-block px-4 py-1 bg-white bg-opacity-20 rounded-full mb-4 backdrop-blur-md">
+                    <span class="text-sm font-semibold flex items-center">
+                        <i class="fas fa-bolt text-yellow-300 mr-2"></i> AI-Powered Learning Platform
+                    </span>
+                </span>
+                <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">Learn Smarter, <span class="text-pink-300">Not Harder</span></h1>
+                <p class="text-xl mb-8 text-gray-100 leading-relaxed">SkillForge uses AI to personalize your learning experience, making education more engaging, effective, and tailored to your unique needs.</p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="{% url 'course_list' %}" class="btn-primary py-3 px-6 rounded-lg font-semibold shadow-lg flex items-center">
+                        <i class="fas fa-book-open mr-2"></i> Explore Courses
+                    </a>
+                    <a href="{% url 'register' %}" class="bg-transparent hover:bg-white hover:text-indigo-600 border-2 border-white py-3 px-6 rounded-lg font-semibold transition-all duration-300 flex items-center">
+                        <i class="fas fa-user-plus mr-2"></i> Join Now
+                    </a>
+                </div>
+            </div>
+            <div class="md:w-1/2 animate-scaleIn">
+                <div class="relative">
+                    <div class="absolute -inset-0.5 bg-gradient-to-r from-pink-500 to-indigo-500 rounded-lg blur opacity-30 animate-pulse"></div>
+                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Students learning online" class="rounded-lg shadow-2xl relative z-10 transform transition-transform duration-500 hover:scale-[1.02]">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16 animate-on-scroll">
+            <span class="inline-block px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-semibold mb-3">Features</span>
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">What Makes SkillForge Special</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">Our cutting-edge platform combines AI technology with proven learning methodologies to deliver an exceptional educational experience.</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="card p-8 bg-white group animate-on-scroll">
+                <div class="w-16 h-16 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300">
+                    <i class="fas fa-brain text-3xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 group-hover:text-indigo-600 transition-colors">AI-Powered Learning Paths</h3>
+                <p class="text-gray-600">Our AI analyzes your strengths, weaknesses, and learning style to create personalized learning paths just for you.</p>
+                <div class="mt-4 overflow-hidden rounded-lg">
+                    <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="AI Learning Path" class="w-full h-48 object-cover transform transition-transform duration-500 group-hover:scale-105">
+                </div>
+            </div>
+            
+            <div class="card p-8 bg-white group animate-on-scroll">
+                <div class="w-16 h-16 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300">
+                    <i class="fas fa-robot text-3xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 group-hover:text-indigo-600 transition-colors" id="ai-tutor-section">AI Tutor</h3>
+                <p class="text-gray-600">Get instant help with our AI tutor, available 24/7 to answer questions and explain complex concepts.</p>
+                <div class="mt-4 overflow-hidden rounded-lg">
+                    <img src="https://images.unsplash.com/photo-1531746790731-6c087fecd65a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="AI Tutor" class="w-full h-48 object-cover transform transition-transform duration-500 group-hover:scale-105">
+                </div>
+            </div>
+            
+            <div class="card p-8 bg-white group animate-on-scroll">
+                <div class="w-16 h-16 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300">
+                    <i class="fas fa-users text-3xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 group-hover:text-indigo-600 transition-colors" id="mentorship-section">Peer Mentorship</h3>
+                <p class="text-gray-600">Connect with experienced peers who can guide you through difficult concepts and provide real-world insights.</p>
+                <div class="mt-4 overflow-hidden rounded-lg">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Peer Mentorship" class="w-full h-48 object-cover transform transition-transform duration-500 group-hover:scale-105">
+                </div>
+            </div>
+            
+            <div class="card p-8 bg-white group animate-on-scroll">
+                <div class="w-16 h-16 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300">
+                    <i class="fas fa-certificate text-3xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 group-hover:text-indigo-600 transition-colors">Blockchain Certificates</h3>
+                <p class="text-gray-600">Earn tamper-proof, verifiable certificates secured by blockchain technology.</p>
+                <div class="mt-4 overflow-hidden rounded-lg">
+                    <img src="https://images.unsplash.com/photo-1639762681057-408e52192e55?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Blockchain Certificate" class="w-full h-48 object-cover transform transition-transform duration-500 group-hover:scale-105">
+                </div>
+            </div>
+            
+            <div class="card p-8 bg-white group animate-on-scroll">
+                <div class="w-16 h-16 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300">
+                    <i class="fas fa-gamepad text-3xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 group-hover:text-indigo-600 transition-colors">Gamified Learning</h3>
+                <p class="text-gray-600">Earn points, badges, and climb leaderboards as you progress through your courses and master new skills.</p>
+                <div class="mt-4 overflow-hidden rounded-lg">
+                    <img src="https://images.unsplash.com/photo-1511193311914-0346f16efe90?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Gamified Learning" class="w-full h-48 object-cover transform transition-transform duration-500 group-hover:scale-105">
+                </div>
+            </div>
+            
+            <div class="card p-8 bg-white group animate-on-scroll">
+                <div class="w-16 h-16 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300">
+                    <i class="fas fa-language text-3xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 group-hover:text-indigo-600 transition-colors">Multi-language Support</h3>
+                <p class="text-gray-600">Learn in your preferred language with support for English, Hindi, Kannada, and more.</p>
+                <div class="mt-4 overflow-hidden rounded-lg">
+                    <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1473&q=80" 
+                         alt="Multi-language Support" class="w-full h-48 object-cover transform transition-transform duration-500 group-hover:scale-105">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Peer Mentorship Section -->
+<section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16 animate-on-scroll">
+            <span class="inline-block px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-semibold mb-3">Peer Mentorship</span>
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Connect with Experienced Peers</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">Get guidance from peers who have already mastered the skills you're learning.</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="card p-8 bg-white group animate-on-scroll">
+                <div class="w-16 h-16 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300">
+                    <i class="fas fa-users text-3xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 group-hover:text-indigo-600 transition-colors">Peer Guidance</h3>
+                <p class="text-gray-600">Get help from peers who have already completed the course and can provide valuable insights.</p>
+                <div class="mt-4 overflow-hidden rounded-lg">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Peer Guidance" class="w-full h-48 object-cover transform transition-transform duration-500 group-hover:scale-105">
+                </div>
+            </div>
+            
+            <div class="card p-8 bg-white group animate-on-scroll">
+                <div class="w-16 h-16 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300">
+                    <i class="fas fa-comments text-3xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 group-hover:text-indigo-600 transition-colors">Peer Discussion</h3>
+                <p class="text-gray-600">Participate in discussions with peers to clarify doubts and gain new perspectives.</p>
+                <div class="mt-4 overflow-hidden rounded-lg">
+                    <img src="https://images.unsplash.com/photo-1515879216573-6a5d2d9f1a67?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Peer Discussion" class="w-full h-48 object-cover transform transition-transform duration-500 group-hover:scale-105">
+                </div>
+            </div>
+            
+            <div class="card p-8 bg-white group animate-on-scroll">
+                <div class="w-16 h-16 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300">
+                    <i class="fas fa-handshake text-3xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 group-hover:text-indigo-600 transition-colors">Peer Networking</h3>
+                <p class="text-gray-600">Connect with peers from diverse backgrounds and industries to expand your professional network.</p>
+                <div class="mt-4 overflow-hidden rounded-lg">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Peer Networking" class="w-full h-48 object-cover transform transition-transform duration-500 group-hover:scale-105">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Courses Section -->
+<section class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between items-center mb-12">
+            <div class="mb-6 md:mb-0 animate-on-scroll">
+                <span class="inline-block px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-semibold mb-3">Courses</span>
+                <h2 class="text-3xl md:text-4xl font-bold">Featured Courses</h2>
+            </div>
+            <a href="{% url 'course_list' %}" class="text-indigo-600 hover:text-indigo-800 font-semibold flex items-center group animate-on-scroll">
+                View All Courses 
+                <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+            </a>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Course 1 -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group animate-on-scroll">
+                <div class="relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Programming Course" class="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute top-0 right-0 bg-indigo-600 text-white px-3 py-1 m-3 rounded-lg text-sm font-semibold">
+                        <i class="fas fa-fire mr-1"></i> Popular
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="bg-indigo-100 text-indigo-800 text-xs font-semibold px-3 py-1 rounded-full">Programming</span>
+                        <div class="flex items-center">
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <span class="text-gray-600 ml-1 font-medium">4.8</span>
+                            <span class="text-gray-400 text-xs ml-1">(248)</span>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 group-hover:text-indigo-600 transition-colors">Python for Data Science</h3>
+                    <p class="text-gray-600 mb-4">Learn Python programming with a focus on data analysis and machine learning applications.</p>
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <span class="font-bold text-lg">₹1,999</span>
+                            <span class="text-gray-400 text-sm line-through ml-2">₹2,999</span>
+                        </div>
+                        <a href="{% url 'course_detail' course_slug='python-for-data-science' %}" class="btn-primary py-2 px-4 rounded-lg text-white font-medium flex items-center">
+                            <span>Enroll Now</span>
+                            <i class="fas fa-chevron-right ml-2 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Course 2 -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group animate-on-scroll">
+                <div class="relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="Web Development Course" class="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute top-0 right-0 bg-green-600 text-white px-3 py-1 m-3 rounded-lg text-sm font-semibold">
+                        <i class="fas fa-certificate mr-1"></i> Bestseller
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="bg-indigo-100 text-indigo-800 text-xs font-semibold px-3 py-1 rounded-full">Web Development</span>
+                        <div class="flex items-center">
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <span class="text-gray-600 ml-1 font-medium">4.9</span>
+                            <span class="text-gray-400 text-xs ml-1">(386)</span>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 group-hover:text-indigo-600 transition-colors">Full Stack Development with MERN</h3>
+                    <p class="text-gray-600 mb-4">Master MongoDB, Express, React, and Node.js to build full-stack web applications.</p>
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <span class="font-bold text-lg">₹2,499</span>
+                            <span class="text-gray-400 text-sm line-through ml-2">₹3,499</span>
+                        </div>
+                        <a href="{% url 'course_detail' course_slug='python-for-data-science' %}" class="btn-primary py-2 px-4 rounded-lg text-white font-medium flex items-center">
+                            <span>Enroll Now</span>
+                            <i class="fas fa-chevron-right ml-2 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Course 3 -->
+            <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group animate-on-scroll">
+                <div class="relative overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1581092335397-408e52192e55?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="AI Course" class="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute top-0 right-0 bg-purple-600 text-white px-3 py-1 m-3 rounded-lg text-sm font-semibold">
+                        <i class="fas fa-bolt mr-1"></i> New
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="bg-indigo-100 text-indigo-800 text-xs font-semibold px-3 py-1 rounded-full">Artificial Intelligence</span>
+                        <div class="flex items-center">
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <span class="text-gray-600 ml-1 font-medium">4.7</span>
+                            <span class="text-gray-400 text-xs ml-1">(193)</span>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 group-hover:text-indigo-600 transition-colors">AI and Machine Learning Fundamentals</h3>
+                    <p class="text-gray-600 mb-4">Understand the core concepts of AI and ML with practical projects and real-world applications.</p>
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <span class="font-bold text-lg">₹3,299</span>
+                            <span class="text-gray-400 text-sm line-through ml-2">₹4,499</span>
+                        </div>
+                        <a href="{% url 'course_detail' course_slug='python-for-data-science' %}" class="btn-primary py-2 px-4 rounded-lg text-white font-medium flex items-center">
+                            <span>Enroll Now</span>
+                            <i class="fas fa-chevron-right ml-2 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16 animate-on-scroll">
+            <span class="inline-block px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-semibold mb-3">Testimonials</span>
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">What Our Students Say</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">Hear from our community of learners who have transformed their skills with SkillForge.</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="glass-card rounded-xl p-8 shadow-lg relative animate-on-scroll">
+                <div class="text-indigo-500 text-6xl absolute -top-4 left-6 opacity-20">"</div>
+                <div class="flex items-center mb-6 relative z-10">
+                    <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Student" class="w-14 h-14 rounded-full mr-4 ring-2 ring-indigo-400 p-0.5">
+                    <div>
+                        <h4 class="font-semibold text-lg">Priya Sharma</h4>
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-gray-600 leading-relaxed relative z-10">"The AI Tutor is incredible! It's like having a personal teacher available 24/7. The personalized learning path helped me learn at my own pace while keeping me challenged."</p>
+            </div>
+            
+            <div class="glass-card rounded-xl p-8 shadow-lg relative animate-on-scroll">
+                <div class="text-indigo-500 text-6xl absolute -top-4 left-6 opacity-20">"</div>
+                <div class="flex items-center mb-6 relative z-10">
+                    <img src="https://randomuser.me/api/portraits/men/44.jpg" alt="Student" class="w-14 h-14 rounded-full mr-4 ring-2 ring-indigo-400 p-0.5">
+                    <div>
+                        <h4 class="font-semibold text-lg">Karthik Reddy</h4>
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-gray-600 leading-relaxed relative z-10">"The blockchain certificates feature is a game-changer. I was able to showcase my verified credentials to employers, which helped me land my dream job!"</p>
+            </div>
+            
+            <div class="glass-card rounded-xl p-8 shadow-lg relative animate-on-scroll">
+                <div class="text-indigo-500 text-6xl absolute -top-4 left-6 opacity-20">"</div>
+                <div class="flex items-center mb-6 relative z-10">
+                    <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Student" class="w-14 h-14 rounded-full mr-4 ring-2 ring-indigo-400 p-0.5">
+                    <div>
+                        <h4 class="font-semibold text-lg">Deepa Patil</h4>
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-gray-600 leading-relaxed relative z-10">"Being able to learn in Kannada made a huge difference for me. The gamification aspects kept me motivated, and I completed courses I would have otherwise abandoned."</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="py-20 bg-gray-50" id="about-section">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16 animate-on-scroll">
+            <span class="inline-block px-3 py-1 bg-indigo-100 text-indigo-800 rounded-full text-sm font-semibold mb-3">About SkillForge</span>
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Our Mission & Vision</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">We're revolutionizing education with AI technology to make quality learning accessible to everyone.</p>
+        </div>
+        
+        <div class="flex flex-col md:flex-row items-center gap-12">
+            <div class="md:w-1/2 animate-on-scroll">
+                <div class="relative">
+                    <div class="absolute -inset-0.5 bg-gradient-to-r from-pink-500 to-indigo-500 rounded-lg blur opacity-30"></div>
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                         alt="SkillForge Team" class="rounded-lg shadow-2xl relative z-10 w-full">
+                </div>
+            </div>
+            
+            <div class="md:w-1/2 animate-on-scroll">
+                <h3 class="text-2xl font-bold mb-4 text-indigo-600">Who We Are</h3>
+                <p class="text-gray-700 mb-6 leading-relaxed">
+                    SkillForge was founded by a team of educators, technologists, and lifelong learners who believe that education should be personalized, engaging, and accessible to everyone regardless of their background or location.
+                </p>
+                
+                <h3 class="text-2xl font-bold mb-4 text-indigo-600">Our Mission</h3>
+                <p class="text-gray-700 mb-6 leading-relaxed">
+                    Our mission is to democratize education by leveraging AI technology to create personalized learning experiences that adapt to each student's unique needs, learning style, and pace.
+                </p>
+                
+                <h3 class="text-2xl font-bold mb-4 text-indigo-600">Our Vision</h3>
+                <p class="text-gray-700 mb-6 leading-relaxed">
+                    We envision a world where quality education is accessible to everyone, where learning is a lifelong journey, and where technology enhances rather than replaces the human elements of education.
+                </p>
+                
+                <div class="flex gap-4 mt-8">
+                    <a href="#" class="btn-primary py-3 px-6 rounded-lg font-semibold shadow-lg flex items-center">
+                        <i class="fas fa-users mr-2"></i> Meet Our Team
+                    </a>
+                    <a href="#" class="bg-transparent hover:bg-indigo-600 text-indigo-600 hover:text-white border-2 border-indigo-600 py-3 px-6 rounded-lg font-semibold transition-all duration-300 flex items-center">
+                        <i class="fas fa-building mr-2"></i> Our Story
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stats Section -->
+<section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div class="animate-on-scroll">
+                <div class="text-4xl font-bold text-indigo-600 mb-2">25K+</div>
+                <p class="text-gray-600">Students</p>
+            </div>
+            <div class="animate-on-scroll">
+                <div class="text-4xl font-bold text-indigo-600 mb-2">150+</div>
+                <p class="text-gray-600">Courses</p>
+            </div>
+            <div class="animate-on-scroll">
+                <div class="text-4xl font-bold text-indigo-600 mb-2">12K+</div>
+                <p class="text-gray-600">Certifications</p>
+            </div>
+            <div class="animate-on-scroll">
+                <div class="text-4xl font-bold text-indigo-600 mb-2">98%</div>
+                <p class="text-gray-600">Satisfaction</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="hero-gradient text-white py-20 relative overflow-hidden">
+    <div class="absolute inset-0 bg-indigo-900 opacity-10 pattern-dots"></div>
+    <div class="container mx-auto px-4 text-center relative z-10">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 animate-on-scroll">Ready to Transform Your Learning Experience?</h2>
+            <p class="text-xl mb-10 animate-on-scroll">Join thousands of students who are already experiencing the future of education with SkillForge's AI-powered platform.</p>
+            <div class="flex flex-wrap justify-center gap-6 animate-on-scroll">
+                <a href="{% url 'register' %}" class="bg-white text-indigo-600 hover:bg-gray-100 py-4 px-8 rounded-lg font-semibold text-lg shadow-lg flex items-center">
+                    <i class="fas fa-rocket mr-2"></i> Get Started For Free
+                </a>
+                <a href="{% url 'course_list' %}" class="bg-transparent hover:bg-white hover:text-indigo-600 border-2 border-white py-4 px-8 rounded-lg font-semibold text-lg transition-all duration-300 flex items-center">
+                    <i class="fas fa-book-open mr-2"></i> Browse Courses
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .pattern-dots {
+        background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+        background-size: 20px 20px;
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,221 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard - SkillForge{% endblock %}
+
+{% block extra_css %}
+<style>
+    .stat-card {
+        transition: transform 0.3s ease;
+    }
+    
+    .stat-card:hover {
+        transform: translateY(-5px);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Dashboard Header -->
+<section class="bg-indigo-100 py-10">
+    <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between items-center mb-6">
+            <div>
+                <h1 class="text-3xl font-bold mb-2">Welcome back, {{ request.user.first_name|default:request.user.username }}</h1>
+                <p class="text-gray-600">Here's what's happening with your learning journey</p>
+            </div>
+            <div class="mt-4 md:mt-0">
+                <a href="{% url 'course_list' %}" class="bg-indigo-600 text-white py-2 px-6 rounded-lg hover:bg-indigo-700 transition-colors">
+                    <i class="fas fa-plus mr-2"></i> Explore More Courses
+                </a>
+            </div>
+        </div>
+        
+        <!-- Stats Overview -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8">
+            <div class="bg-white rounded-lg p-6 shadow-md stat-card">
+                <div class="flex items-center">
+                    <div class="p-3 rounded-full bg-blue-100 text-blue-500 mr-4">
+                        <i class="fas fa-book text-xl"></i>
+                    </div>
+                    <div>
+                        <p class="text-gray-500 text-sm">Enrolled Courses</p>
+                        <h3 class="text-2xl font-bold">{{ enrolled_count|default:"0" }}</h3>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg p-6 shadow-md stat-card">
+                <div class="flex items-center">
+                    <div class="p-3 rounded-full bg-green-100 text-green-500 mr-4">
+                        <i class="fas fa-check-circle text-xl"></i>
+                    </div>
+                    <div>
+                        <p class="text-gray-500 text-sm">Completed Courses</p>
+                        <h3 class="text-2xl font-bold">{{ completed_count|default:"0" }}</h3>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg p-6 shadow-md stat-card">
+                <div class="flex items-center">
+                    <div class="p-3 rounded-full bg-yellow-100 text-yellow-500 mr-4">
+                        <i class="fas fa-certificate text-xl"></i>
+                    </div>
+                    <div>
+                        <p class="text-gray-500 text-sm">Earned Certificates</p>
+                        <h3 class="text-2xl font-bold">{{ certificate_count|default:"0" }}</h3>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg p-6 shadow-md stat-card">
+                <div class="flex items-center">
+                    <div class="p-3 rounded-full bg-purple-100 text-purple-500 mr-4">
+                        <i class="fas fa-medal text-xl"></i>
+                    </div>
+                    <div>
+                        <p class="text-gray-500 text-sm">Experience Points</p>
+                        <h3 class="text-2xl font-bold">{{ request.user.experience_points|default:"0" }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Main Dashboard Content -->
+<section class="py-10">
+    <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Course Progress -->
+            <div class="lg:col-span-2">
+                <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-xl font-bold">In Progress</h2>
+                        <a href="{% url 'my_courses' %}" class="text-indigo-600 hover:text-indigo-800 text-sm">View All</a>
+                    </div>
+                    
+                    {% if in_progress_courses %}
+                        <div class="space-y-6">
+                            {% for enrollment in in_progress_courses %}
+                                <div class="flex flex-col md:flex-row border rounded-lg overflow-hidden">
+                                    <div class="md:w-1/3 h-48 md:h-auto">
+                                        {% if enrollment.course.image %}
+                                            <img src="{{ enrollment.course.image.url }}" alt="{{ enrollment.course.title }}" class="w-full h-full object-cover">
+                                        {% else %}
+                                            <div class="w-full h-full bg-gray-200 flex items-center justify-center">
+                                                <i class="fas fa-book text-gray-400 text-4xl"></i>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                    <div class="p-4 md:p-6 flex-1">
+                                        <h3 class="text-lg font-semibold mb-2">{{ enrollment.course.title }}</h3>
+                                        <div class="flex items-center text-sm text-gray-500 mb-3">
+                                            <span class="mr-3"><i class="fas fa-clock mr-1"></i> Last accessed: {{ enrollment.last_accessed|date:"M d, Y" }}</span>
+                                            <span><i class="fas fa-layer-group mr-1"></i> {{ enrollment.course.modules.count }} modules</span>
+                                        </div>
+                                        <div class="mb-3">
+                                            <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                                <div class="bg-indigo-600 h-2.5 rounded-full" style="width: {{ enrollment.completion_percentage }}%"></div>
+                                            </div>
+                                            <p class="text-sm text-gray-500 mt-1">{{ enrollment.completion_percentage }}% complete</p>
+                                        </div>
+                                        <a href="{% url 'course_modules' course_slug=enrollment.course.slug %}" class="inline-block bg-indigo-600 text-white py-2 px-4 rounded hover:bg-indigo-700 transition-colors text-sm">
+                                            Continue Learning
+                                        </a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="text-center py-8 bg-gray-50 rounded-lg">
+                            <i class="fas fa-book-open text-gray-300 text-5xl mb-3"></i>
+                            <p class="text-gray-500 mb-4">You haven't started any courses yet.</p>
+                            <a href="{% url 'course_list' %}" class="bg-indigo-600 text-white py-2 px-6 rounded-lg hover:bg-indigo-700 transition-colors">
+                                Explore Courses
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <!-- Sidebar -->
+            <div class="space-y-8">
+                <!-- Recommended Courses -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-xl font-bold mb-4">Recommended For You</h2>
+                    
+                    {% if recommended_courses %}
+                        <div class="space-y-4">
+                            {% for course in recommended_courses %}
+                                <div class="flex border rounded-lg overflow-hidden">
+                                    <div class="w-1/3 h-24">
+                                        {% if course.image %}
+                                            <img src="{{ course.image.url }}" alt="{{ course.title }}" class="w-full h-full object-cover">
+                                        {% else %}
+                                            <div class="w-full h-full bg-gray-200 flex items-center justify-center">
+                                                <i class="fas fa-book text-gray-400 text-2xl"></i>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                    <div class="w-2/3 p-3">
+                                        <h3 class="font-medium text-sm mb-1 line-clamp-2">{{ course.title }}</h3>
+                                        <div class="flex items-center text-xs text-gray-500">
+                                            <span class="flex items-center">
+                                                <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                                {{ course.avg_rating|default:"New" }}
+                                            </span>
+                                            <span class="mx-2">•</span>
+                                            <span>{{ course.level }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <a href="{% url 'course_list' %}" class="block text-center text-indigo-600 hover:text-indigo-800 mt-4 text-sm">
+                            View All Recommendations
+                        </a>
+                    {% else %}
+                        <p class="text-gray-500 text-sm">Complete your profile to get personalized recommendations.</p>
+                    {% endif %}
+                </div>
+                
+                <!-- Learning Streak -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-xl font-bold mb-4">Learning Streak</h2>
+                    <div class="flex items-center justify-center mb-4">
+                        <div class="w-24 h-24 rounded-full bg-indigo-100 flex items-center justify-center">
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-indigo-600">{{ request.user.streak_days|default:"0" }}</div>
+                                <div class="text-xs text-gray-500">days</div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-center text-gray-500 text-sm mb-3">
+                        {% if request.user.streak_days > 0 %}
+                            Keep up the good work! You're on a {{ request.user.streak_days }} day streak.
+                        {% else %}
+                            Start learning today to begin your streak!
+                        {% endif %}
+                    </p>
+                    <div class="grid grid-cols-7 gap-1">
+                        {% for i in "1234567" %}
+<div class="h-8 rounded {% if forloop.counter <= streak_mod %}bg-indigo-500{% else %}bg-gray-200{% endif %}"></div>
+
+                        {% endfor %}
+                    </div>
+                </div>
+                
+                <!-- AI Tutor Quick Access -->
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-xl font-bold mb-4">AI Tutor</h2>
+                    <p class="text-gray-500 text-sm mb-4">Get personalized help with your learning journey.</p>
+                    <a href="#" class="block text-center bg-indigo-600 text-white py-2 px-4 rounded hover:bg-indigo-700 transition-colors">
+                        Ask AI Tutor a Question
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
